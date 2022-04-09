@@ -4,7 +4,7 @@ import App from './App';
 
 test('renders learn react link', () => {
   const { getByText } = render(
-    <App />
+    <App />,
   );
 
   expect(getByText(/learn/i)).toBeInTheDocument();
