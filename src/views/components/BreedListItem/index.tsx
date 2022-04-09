@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { DogAvatar } from 'views/components';
+import { BreedAvatar } from 'views/components';
 
-export interface DogListItemProps {
+export interface BreedListItemProps {
   name: string;
   imageUrl: string;
   count: number;
@@ -11,7 +11,7 @@ export interface DogListItemProps {
   className?: string;
 }
 
-export function DogListItem(props: DogListItemProps) {
+export function BreedListItem(props: BreedListItemProps) {
   const {
     name, imageUrl, count, onClick, className,
   } = props;
@@ -21,13 +21,13 @@ export function DogListItem(props: DogListItemProps) {
       className={`list-group-item d-flex justify-content-between align-items-center ${className}`}
       onClick={onClick}
     >
-      <DogAvatar imageUrl={imageUrl} />
+      <BreedAvatar imageUrl={imageUrl} />
       {name}
       <span className="badge badge-primary badge-pill">{count}</span>
     </li>
   );
 }
 
-DogListItem.defaultProps = {
+BreedListItem.defaultProps = {
   className: '',
 };

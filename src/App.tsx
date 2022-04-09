@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import MainPage from 'views/pages/Main';
 import { routeMap } from 'views/pages/routes';
 
-const DogPage = lazy(() => import('views/pages/Dogs'));
+const DogPage = lazy(() => import('views/pages/Breeds'));
 
 function App() {
   return (

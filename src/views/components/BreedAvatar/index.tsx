@@ -2,12 +2,12 @@ import React from 'react';
 
 import './index.css';
 
-export interface DogAvatarProps {
+export interface BreedAvatarProps {
     imageUrl: string;
     size?: number;
 }
 
-export function DogAvatar({ imageUrl, size }: DogAvatarProps) {
+export function BreedAvatar({ imageUrl, size }: BreedAvatarProps) {
   const pxSzie = `${size}px`;
   return (
     <div>
@@ -16,6 +16,6 @@ export function DogAvatar({ imageUrl, size }: DogAvatarProps) {
   );
 }
 
-DogAvatar.defaultProps = {
+BreedAvatar.defaultProps = {
   size: 80,
 };

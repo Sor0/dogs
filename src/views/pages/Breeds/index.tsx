@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import {
   Container, Row, Col,
 } from 'reactstrap';
-import { DogListItem } from 'views/components';
-import { Dog } from 'core/entities/dog';
+import { BreedListItem } from 'views/components';
+import { Breed } from 'core/entities/breed';
 
 import './index.css';
 
-const dogs: Dog[] = [
+const dogs: Breed[] = [
   { name: 'Come cuando hay', count: 10 },
   { name: 'Come cuando hay 1', count: 10 },
 ];
 
-export default function DogPage() {
+export default function BreedPage() {
   const [selected, setSelected] = useState<any>(undefined);
 
   const handleClose = () => {
@@ -35,7 +35,7 @@ export default function DogPage() {
                     }
                   }
                   return (
-                    <DogListItem
+                    <BreedListItem
                       className={className}
                       onClick={() => setSelected(dog)}
                       key={dog.name}
@@ -58,7 +58,7 @@ export default function DogPage() {
                 </div>
                 <div className="mt-3">
                   <ul className="list-group">
-                    {
+                    {/* {
                         dogs.map((dog) => (
                           <DogListItem
                             onClick={() => setSelected(dog)}
@@ -68,7 +68,7 @@ export default function DogPage() {
                             count={dog.count}
                           />
                         ))
-                    }
+                    } */}
                   </ul>
                 </div>
               </Col>

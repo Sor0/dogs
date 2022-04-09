@@ -1,2 +1,2 @@
-export { DogListItem } from './DogListItem';
-export { DogAvatar } from './DogAvatar';
+export { BreedListItem } from './BreedListItem';
+export { BreedAvatar } from './BreedAvatar';
