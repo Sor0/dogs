@@ -1,3 +1,3 @@
 export const routeMap = {
-  dogs: '/dogs',
+  dogs: '/breeds',
 };

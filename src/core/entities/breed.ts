@@ -1,4 +1,4 @@
 export interface Breed {
     name: string;
-    count: number;
+    childBreeds: string[];
 }

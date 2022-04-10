@@ -1,33 +1,33 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { BreedAvatar } from 'views/components';
+import { ListGroupItem } from 'reactstrap';
 
 export interface BreedListItemProps {
   name: string;
-  imageUrl: string;
-  count: number;
-  onClick(): void;
+  count?: number;
+  onClick?(): void;
   className?: string;
 }
 
 export function BreedListItem(props: BreedListItemProps) {
   const {
-    name, imageUrl, count, onClick, className,
+    name, count, onClick, className,
   } = props;
 
   return (
-    <li
+    <ListGroupItem
       className={`list-group-item d-flex justify-content-between align-items-center ${className}`}
       onClick={onClick}
     >
-      <BreedAvatar imageUrl={imageUrl} />
       {name}
-      <span className="badge badge-primary badge-pill">{count}</span>
-    </li>
+      {
+        count ? (<span className="bg-primary badge badge-primary badge-pill">{count}</span>) : null
+      }
+    </ListGroupItem>
   );
 }
 
 BreedListItem.defaultProps = {
   className: '',
+  onClick: undefined,
+  count: undefined,
 };

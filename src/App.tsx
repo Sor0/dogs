@@ -1,25 +1,26 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import MainPage from 'views/pages/Main';
 import { routeMap } from 'views/pages/routes';
+import { loadFavorite } from './app/store/slices/breeds';
 
 const DogPage = lazy(() => import('views/pages/Breeds'));
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadFavorite());
+  }, []);
+
   return (
     <div>
       <Suspense fallback={<h1>Cargando...</h1>}>
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path={routeMap.dogs} element={<DogPage />} />
-          {/* <Route path={routeMap.rates} element={<Rates />}>
-          <Route path=":id/details" element={<RateDetailPage />} />
-          <Route index element={<RateListPage />} />
-        </Route>
-        <Route path={routeMap.shoppingCart} element={<ShoppingCartPage />}>
-          <Route index element={<ShoppingCartResumePage />} />
-        </Route> */}
         </Routes>
       </Suspense>
     </div>

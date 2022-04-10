@@ -1,8 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
-
+import { configureStore } from '@reduxjs/toolkit';
+import breedSlice from './slices/breeds';
 
 export const store = configureStore({
-    reducer: {
-
-    }
+  reducer: {
+    breeds: breedSlice.reducer,
+  },
 });

@@ -25,7 +25,9 @@
         "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "import/prefer-default-export": "off",
-        "react/require-default-props": "warn"
+        "react/require-default-props": "warn",
+        "class-methods-use-this": "warn",
+        "no-return-await": "warn"
     },
     "settings": {
         "import/resolver": {
