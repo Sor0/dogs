@@ -5,6 +5,7 @@ import { BreedRepository } from 'app/repositories/breeds';
 import { BreedState } from 'core/types/AppSate';
 import { Breed } from 'core/entities/breed';
 import { Favorite } from 'core/types/favorite';
+import { ResponseContent, JsonResponse, ArrayObject } from 'core/types/response';
 
 const initialState: BreedState = {
   items: [],
@@ -46,14 +47,15 @@ export const { actions } = breedSlice;
 
 export default breedSlice;
 
-export const loadAllbreeds = () => async (dispatch: Dispatch<any>) => {
+export const loadAllbreeds = () => async (dispatch: Dispatch<unknown>) => {
   dispatch(actions.loading(true));
   const repository = new BreedRepository();
   const response = await repository.getAll();
   if (response.status === 200) {
-    const content: any = await response.json();
+    const content: ResponseContent<ArrayObject<string>> = await response.json();
     const breeds: Breed[] = [];
     const items = content.message;
+
     Object.keys(items).forEach((key: string) => breeds.push({
       name: key,
       childBreeds: items[key],
@@ -62,7 +64,7 @@ export const loadAllbreeds = () => async (dispatch: Dispatch<any>) => {
   }
 };
 
-export const laodBreedsImages = (breed: Breed) => async (dispatch: Dispatch<any>) => {
+export const laodBreedsImages = (breed: Breed) => async (dispatch: Dispatch<unknown>) => {
   dispatch(actions.laodingSubBreads(true));
   const repository = new BreedRepository();
   const requests = breed.childBreeds.map(
@@ -70,15 +72,15 @@ export const laodBreedsImages = (breed: Breed) => async (dispatch: Dispatch<any>
   );
 
   const jsons = await Promise.all(requests).then(
-    (...responses) => responses[0].map((respose: any) => respose.json()),
+    (...responses) => responses[0].map((respose: JsonResponse<string[]>) => respose.json()),
   );
 
   Promise.all(jsons).then(
     (...objects) => {
-      const imageMap: any = {};
+      const imageMap: ArrayObject<string> = {};
       breed.childBreeds.forEach(
         (key: string, index: number) => {
-          const data: any = objects[0][index];
+          const data: ResponseContent<string[]> = objects[0][index];
           imageMap[key] = data.message;
         },
       );
@@ -87,19 +89,19 @@ export const laodBreedsImages = (breed: Breed) => async (dispatch: Dispatch<any>
   );
 };
 
-export const setFavorite = (favorite: Favorite) => (dispatch: Dispatch<any>) => {
+export const setFavorite = (favorite: Favorite) => (dispatch: Dispatch<unknown>) => {
   const repository = new BreedRepository();
   repository.saveFavorite(favorite);
   dispatch(actions.setFavorite(favorite));
 };
 
-export const removeFavorite = () => (dispatch: Dispatch<any>) => {
+export const removeFavorite = () => (dispatch: Dispatch<unknown>) => {
   const repository = new BreedRepository();
   repository.removeFavorite();
   dispatch(actions.setFavorite(undefined));
 };
 
-export const loadFavorite = () => (dispatch: Dispatch<any>) => {
+export const loadFavorite = () => (dispatch: Dispatch<unknown>) => {
   const repository = new BreedRepository();
   const favorite = repository.getFavorite();
   dispatch(actions.setFavorite(favorite));
